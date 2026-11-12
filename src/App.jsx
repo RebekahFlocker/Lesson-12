@@ -1,25 +1,20 @@
 import {useState} from 'react';
 import axios from 'axios';  
-import './App.css';
 
 function App(){
   const [fact, setFact] = useState(''); 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
-    setError('');
+  const [error, setError] = useState(null);
     
-    try {
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // stops page refresh after submit/ search
+    setError(''); // clear errors
+    
+    try { // try the following...
       const response = await axios.get('https://catfact.ninja/fact');
       setFact(response.data.fact);
-    } catch (error) {
+    } catch (error) { // otherwise if an error occurs, try the following...
       setError('Failed to fetch fact. Try again.');
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return (
