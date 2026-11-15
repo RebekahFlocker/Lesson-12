@@ -7,7 +7,9 @@ function App(){
     
   const handleSubmit = async (event) => {
     event.preventDefault(); // stops page refresh after submit/ search
-    setError(''); // clear errors
+    setError(''); // clear errors 
+    
+    // Helpful Tutorial: https://www.youtube.com/watch?v=ZBs8ymBImNw 
     
     try { // try the following...
       const response = await axios.get('https://catfact.ninja/fact');
